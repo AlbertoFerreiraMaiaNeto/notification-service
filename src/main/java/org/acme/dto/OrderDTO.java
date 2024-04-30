@@ -1,4 +1,4 @@
-package org.acme.persistence.dto;
+package org.acme.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;

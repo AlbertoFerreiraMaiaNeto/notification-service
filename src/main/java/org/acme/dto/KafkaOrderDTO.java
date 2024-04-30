@@ -1,4 +1,4 @@
-package org.acme.persistence.dto;
+package org.acme.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,15 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class KafkaPayloadDTO {
+public class KafkaOrderDTO {
 
     private OrderDTO orderDTO;
 
     private List<ProductPayloadDTO> confirmedProducts;
 
     private List<ProductPayloadDTO> insufficientAmountProducts;
-
-    private List<ProductPayloadDTO> nonExistsProducts;
 
     private StatusOrder statusOrder;
 }

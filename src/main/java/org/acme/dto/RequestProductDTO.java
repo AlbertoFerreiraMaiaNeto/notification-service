@@ -1,23 +1,17 @@
-package org.acme.persistence.dto;
+package org.acme.dto;
 
 import lombok.*;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductDTO {
+public class RequestProductDTO {
 
     private String name;
 
     private String category;
-
-    private String description;
-
-    private BigDecimal unitPrice;
 
     private int amount;
 }
