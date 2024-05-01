@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .processed-items, .insufficient-items {
+            margin-bottom: 20px;
+        }
+        .item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .item h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Order Confirmation</h1>
+    <p>Thank you for placing your order with us.</p>
+
+    <div class="processed-items">
+        <h2>Items Successfully Processed</h2>
+        {#for product in kafkaOrderDTO.confirmedProducts}
+        <div class="item">
+            <h3>Name: {product.name}</h3>
+            <h3>Category: {product.category}</h3>
+            <h3>Amount: {product.amount}</h3>
+        </div>
+        {/for}
+    </div>
+
+    <div class="insufficient-items">
+        <h2>Items Not Processed Due to Lack of Stock</h2>
+        {#for product in kafkaOrderDTO.insufficientAmountProducts}
+        <div class="item">
+            <h3>Name: {product.name}</h3>
+            <h3>Category: {product.category}</h3>
+            <h3>Amount: {product.amount}</h3>
+        </div>
+        {/for}
+    </div>
+</div>
+</body>
+</html>
