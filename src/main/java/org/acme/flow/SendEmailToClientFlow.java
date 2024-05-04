@@ -24,10 +24,12 @@ public class SendEmailToClientFlow {
     @Inject
     private final Template orderConfirmationTemplate;
 
+    private final HttpRequestCommerceServiceFlow httpRequestCommerceServiceFlow;
+
     public void sendEmail (KafkaOrderDTO kafkaOrderDTO) {
         try {
             var ownerEmail = kafkaOrderDTO.getOrderDTO().getOrderOwnerEmail();
-            var subject = "Notification-service: Your order is Confirmed";
+            var subject = "Notification-service: News of your order";
 
             Map<String, Object> templateData = new HashMap<>();
             templateData.put("kafkaOrderDTO", kafkaOrderDTO);
@@ -38,7 +40,9 @@ public class SendEmailToClientFlow {
 
             this.mailer.send(Mail.withHtml(ownerEmail, subject, htmlBody));
 
-            log.info("Order confirmation email sent successfully.");
+            log.info("Order email sent successfully.");
+
+            this.httpRequestCommerceServiceFlow.sendHttpRequest(kafkaOrderDTO);
         } catch (Exception e) {
             log.error("Error sending order confirmation email. - Cause: ", e);
         }

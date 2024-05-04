@@ -37,9 +37,15 @@
 </head>
 <body>
 <div class="container">
-    <h1>Order Confirmation</h1>
+    {#if !kafkaOrderDTO.confirmedProducts().isEmpty()}
+    <h1>Order Confirmed</h1>
     <p>Thank you for placing your order with us.</p>
+    {#else}
+    <h1>Order Denied</h1>
+    <p>None of the items you ordered are in stock</p>
+    {/if}
 
+    {#if !kafkaOrderDTO.confirmedProducts().isEmpty()}
     <div class="processed-items">
         <h2>Items Successfully Processed</h2>
         {#for product in kafkaOrderDTO.confirmedProducts}
@@ -47,10 +53,13 @@
             <h3>Name: {product.name}</h3>
             <h3>Category: {product.category}</h3>
             <h3>Amount: {product.amount}</h3>
+            <h3>Total: {product.totalPricePerProduct}</h3>
         </div>
         {/for}
     </div>
+    {/if}
 
+    {#if !kafkaOrderDTO.insufficientAmountProducts().isEmpty()}
     <div class="insufficient-items">
         <h2>Items Not Processed Due to Lack of Stock</h2>
         {#for product in kafkaOrderDTO.insufficientAmountProducts}
@@ -60,6 +69,13 @@
             <h3>Amount: {product.amount}</h3>
         </div>
         {/for}
+    </div>
+    {/if}
+
+    <div class="total-order-price">
+        <div class="item">
+            <h3>Total Order Price: ${kafkaOrderDTO.totalOrderPrice}</h3>
+        </div>
     </div>
 </div>
 </body>

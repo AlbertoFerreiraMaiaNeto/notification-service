@@ -15,6 +15,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class KafkaOrderDTO {
 
+    private Long orderId;
+
     private OrderDTO orderDTO;
 
     private List<ProductPayloadDTO> confirmedProducts;
@@ -22,5 +24,7 @@ public class KafkaOrderDTO {
     private List<ProductPayloadDTO> insufficientAmountProducts;
 
     private StatusOrder statusOrder;
+
+    private double totalOrderPrice;
 }
 
