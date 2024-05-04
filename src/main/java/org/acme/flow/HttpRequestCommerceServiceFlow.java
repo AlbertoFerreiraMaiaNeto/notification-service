@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.acme.dto.KafkaOrderDTO;
 import org.acme.dto.RequestProductDTO;
 import org.acme.dto.StatusOrderAndStockDTO;
+import org.acme.enums.OrderStatus;
 
 import java.io.IOException;
 import java.net.URI;
@@ -57,9 +58,10 @@ public class HttpRequestCommerceServiceFlow {
 
     private static StatusOrderAndStockDTO buildRequestBody(KafkaOrderDTO kafkaOrderDTO) {
         if(kafkaOrderDTO.getConfirmedProducts().isEmpty()) {
-            return StatusOrderAndStockDTO.builder().orderStatus("CANCELED").build();
+            return StatusOrderAndStockDTO.builder().orderStatus(OrderStatus.CANCELED.name()).build();
         } else {
             List<RequestProductDTO> requestProductDTOList = new ArrayList<>();
+
             kafkaOrderDTO.getConfirmedProducts().forEach(product -> {
                 requestProductDTOList.add(
                         RequestProductDTO.builder()
@@ -69,7 +71,7 @@ public class HttpRequestCommerceServiceFlow {
                                 .build());
             });
 
-            return StatusOrderAndStockDTO.builder().orderStatus("CONFIRMED").productList(requestProductDTOList).build();
+            return StatusOrderAndStockDTO.builder().orderStatus(OrderStatus.CONFIRMED.name()).productList(requestProductDTOList).build();
         }
     }
 }

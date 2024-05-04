@@ -3,7 +3,7 @@ package org.acme.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-import org.acme.enums.StatusOrder;
+import org.acme.enums.OrderStatus;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class KafkaOrderDTO {
 
     private List<ProductPayloadDTO> insufficientAmountProducts;
 
-    private StatusOrder statusOrder;
+    private OrderStatus statusOrder;
 
     private double totalOrderPrice;
 }

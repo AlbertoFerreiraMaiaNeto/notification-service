@@ -9,7 +9,7 @@ import org.eclipse.microprofile.openapi.annotations.info.Info;
         info = @Info(
                 title = "notification-service",
                 version = "1.0",
-                description = "Service for creating, reading, updating, and deleting products in the catalog, as well as processing orders.",
+                description = "Service to consume orders in a kafka topic and notify an order confirmation by email.",
                 contact = @Contact(url = "https://github.com/AlbertoFerreiraMaiaNeto/", name = "Alberto", email = "albertoferreiramaianeto@gmail.com")
         )
 )

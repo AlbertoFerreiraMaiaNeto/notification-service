@@ -1,55 +1,34 @@
-# Commerce Service (commerce-service)
+# Notification Service (notification-service)
 
-### Service for creating, reading, updating, and deleting products in the catalog, as well as processing orders.
+### Service to consume orders in a kafka topic and notify an order confirmation by email
 
------
-##  Funcionalidades Principais: 
+----
 
-### Gerenciamento de Produtos:
+### This service communicates with [commerce-service](https://github.com/AlbertoFerreiraMaiaNeto/commerce-service) for update stock of products and the order status
 
-Adicione, atualize, recupere e remova produtos do catálogo.
+----
 
-### Gerenciamento de Categorias:
-Ative ou desative categorias e ajuste a disponibilidade dos produtos.
-
-### Validação de Categoria:
-Produtos de categorias desativadas não são exibidos, e a própria categoria também é ocultada.
+### How to Contribute
+If you want to contribute to development or fixing issues, feel free to open issues or submit pull requests. Be sure to follow the project's contribution guidelines.
 
 -----
-### Tratamento de Erros
-O catálogo de produtos implementa tratamento de erros para garantir a robustez do sistema. Aqui estão as exceções tratadas:
+### Technologies Used:
 
-
-| Código de Erro | Mensagem de Erro |
-| --------------:| ------------|
-| C01	| Category not found.| 
-| C02	| This Category Already Exists.| 
-| P01	| Product not found. |
-| P02	| This Product Already Exists |
-
------
-### Configurações:
-As configurações do catálogo de produtos estão disponíveis no arquivo application.properties. 
-Isso inclui configurações relacionadas ao Cache Caffeine e outras opções específicas do serviço.
-
------
-### Como Contribuir
-Se deseja contribuir para o desenvolvimento ou correção de problemas, sinta-se à vontade para abrir problemas ou enviar pull requests. Certifique-se de seguir as diretrizes de contribuição do projeto.
-
-Agradeço por escolher o meu catálogo de produtos. Espero que seja uma experiência valiosa.
-
------
-### Tecnologias Utilizadas:
 Framework: Quarkus
 
-Linguagem: Java
+Language: Java
 
-Banco de Dados: PostgreSQL
+Data Stream: Kafka
 
-Cache: Caffeine
-
+SMTP testing tool: Mailpit
 
 -----
-Para acessar o Swagger, execute o projeto e digite no browser: http://localhost:8080/q/swagger-ui
+
+### Settings:
+The notification-service settings are available in the application.properties file.
+This includes mailpit and kafka configurations.
+
+-----
+To acess the Swagger, run the project and type in the browser: http://localhost:8080/q/swagger-ui
 
 
