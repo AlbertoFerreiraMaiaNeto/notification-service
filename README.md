@@ -29,6 +29,5 @@ The notification-service settings are available in the application.properties fi
 This includes mailpit and kafka configurations.
 
 -----
-To acess the Swagger, run the project and type in the browser: http://localhost:8080/q/swagger-ui
 
 
