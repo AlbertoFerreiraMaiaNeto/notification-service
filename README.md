@@ -8,6 +8,12 @@
 
 ----
 
+### Architecture
+
+![Architecture](../assets/architecture-draw.png)
+
+----
+
 ### How to Contribute
 If you want to contribute to development or fixing issues, feel free to open issues or submit pull requests. Be sure to follow the project's contribution guidelines.
 
