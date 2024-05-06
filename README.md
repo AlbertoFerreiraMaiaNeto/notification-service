@@ -10,7 +10,7 @@
 
 ### Architecture
 
-![Architecture](../assets/architecture-draw.png)
+![Architecture](src/main/assets/architecture-draw.png)
 
 ----
 
