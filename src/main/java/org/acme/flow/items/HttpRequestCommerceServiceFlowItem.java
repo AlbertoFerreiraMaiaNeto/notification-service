@@ -1,4 +1,4 @@
-package org.acme.flow;
+package org.acme.flow.items;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -19,15 +19,15 @@ import java.util.List;
 
 @Slf4j
 @ApplicationScoped
-public class HttpRequestCommerceServiceFlow {
+public class HttpRequestCommerceServiceFlowItem {
 
     private final HttpClient httpClient;
 
-    public HttpRequestCommerceServiceFlow() {
+    public HttpRequestCommerceServiceFlowItem() {
         this.httpClient = HttpClient.newHttpClient();
     }
 
-    public void sendHttpRequest (KafkaOrderDTO kafkaOrderDTO) {
+    public HttpResponseStatus sendHttpRequest (KafkaOrderDTO kafkaOrderDTO) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             var requestBody = objectMapper.writeValueAsString(buildRequestBody(kafkaOrderDTO));
@@ -40,6 +40,8 @@ public class HttpRequestCommerceServiceFlow {
             } else {
                 log.error("Error when Update Order Status and Stock.");
             }
+
+            return httpStatus;
         } catch (IOException e) {
             log.error("Error when Update Order Status and Stock.");
         } catch (InterruptedException e) {
@@ -47,6 +49,7 @@ public class HttpRequestCommerceServiceFlow {
             Thread.currentThread().interrupt();
         }
 
+        return null;
     }
 
     private static HttpRequest getHttpRequest(KafkaOrderDTO kafkaOrderDTO, String requestBody) {

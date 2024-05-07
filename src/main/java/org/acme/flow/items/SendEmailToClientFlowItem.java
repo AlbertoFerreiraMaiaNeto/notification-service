@@ -1,4 +1,4 @@
-package org.acme.flow;
+package org.acme.flow.items;
 
 import io.quarkus.mailer.Mail;
 import io.quarkus.mailer.Mailer;
@@ -16,15 +16,13 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 @Singleton
-public class SendEmailToClientFlow {
+public class SendEmailToClientFlowItem {
 
     @Inject
     private final Mailer mailer;
 
     @Inject
     private final Template orderConfirmationTemplate;
-
-    private final HttpRequestCommerceServiceFlow httpRequestCommerceServiceFlow;
 
     public void sendEmail (KafkaOrderDTO kafkaOrderDTO) {
         try {
@@ -41,8 +39,6 @@ public class SendEmailToClientFlow {
             this.mailer.send(Mail.withHtml(ownerEmail, subject, htmlBody));
 
             log.info("Order email sent successfully.");
-
-            this.httpRequestCommerceServiceFlow.sendHttpRequest(kafkaOrderDTO);
         } catch (Exception e) {
             log.error("Error sending order confirmation email. - Cause: ", e);
         }
